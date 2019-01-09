@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from audioView import views
+from . import views
+
+router = routers.DefaultRouter()
+router.register('sample', views.SampleView)
+
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', include(router.urls)),
+
 ]
