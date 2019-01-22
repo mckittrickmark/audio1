@@ -5,34 +5,38 @@ import json
 
 audio_file = sys.argv[1]
 
-with open('./serv/podcast1-cred.json') as myfile:
-  json_creds=myfile.read()
 
-r = sr.Recognizer()
-print(audio_file)
-audioOutput = "Hello World"
+def googleSpeechCloud(audio_file):
 
-audio_object = sr.AudioFile(audio_file)
-with audio_object as source:
-  audioRecorded = r.record(source)
-audioOutput = r.recognize_google_cloud(audioRecorded, credentials_json=json_creds, show_all=True)
+  with open('./serv/podcast1-cred.json') as myfile:
+    json_creds=myfile.read()
 
-print(audioOutput)
+  r = sr.Recognizer()
+  print(audio_file)
+  audioOutput = "Hello World"
 
-audioNameStartPosition = audio_file.rfind('/')
-audioNameStartPosition += 1
+  audio_object = sr.AudioFile(audio_file)
+  with audio_object as source:
+    audioRecorded = r.record(source)
+  audioOutput = r.recognize_google_cloud(audioRecorded, credentials_json=json_creds, show_all=True)
 
-audioNameEndPosition = audio_file.rfind('.')
+  print(audioOutput)
 
+  audioNameStartPosition = audio_file.rfind('/')
+  audioNameStartPosition += 1
 
-audioFileName = audio_file[audioNameStartPosition:audioNameEndPosition]
+  audioNameEndPosition = audio_file.rfind('.')
 
-audioFileName += '.py'
+  audioFileName = audio_file[audioNameStartPosition:audioNameEndPosition]
 
-fileOutput = open(audioFileName, 'w+')
+  audioFileName += '.py'
 
-fileOutput.write(json.dumps(audioOutput))
+  fileOutput = open(audioFileName, 'w+')
 
-fileOutput.close()
+  fileOutput.write(json.dumps(audioOutput))
 
-print("Output file written")
+  fileOutput.close()
+
+  print("Output file written")
+
+  return audioFileName

@@ -1,10 +1,10 @@
 
 from rest_framework import views, viewsets
-from .serializers import AudioViewSerializer, SampleSerializer
-from .models import Sample
+from .serializers import *
+from .models import *
 from rest_framework.response import Response
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 #from django.http import HttpResponse
 #from django.shortcuts import render
@@ -23,3 +23,30 @@ class ListAudio(views.APIView):
 class SampleView(viewsets.ModelViewSet):
   queryset = Sample.objects.all()
   serializer_class = SampleSerializer
+
+class SubredditView(viewsets.ModelViewSet):
+  queryset = Subreddit.objects.all()
+  serializer_class = SubredditSerializer
+
+class TopicView(viewsets.ViewSet):
+  queryset = Topic.objects.all()
+  #serializer_class = TopicSerializer
+
+  def list(self, request):
+    queryset = Topic.objects.all()
+    serializer = TopicSerializer(queryset, many=True)
+
+    return JsonResponse(serializer.data)
+
+  def post(self, request):
+
+    return HttpResponse('This is a POST Request')
+
+class DatePeriodView(viewsets.ModelViewSet):
+  queryset = DatePeriod.objects.all()
+  serializer_class = DatePeriodSerializer
+
+
+
+
+
