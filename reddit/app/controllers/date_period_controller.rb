@@ -1,0 +1,2 @@
+class DatePeriodController < ApplicationController
+end

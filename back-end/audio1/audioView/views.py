@@ -1,10 +1,15 @@
 
 from rest_framework import views, viewsets
+from rest_framework  import generics
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
 import json
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+
 
 #from django.http import HttpResponse
 #from django.shortcuts import render
@@ -28,19 +33,25 @@ class SubredditView(viewsets.ModelViewSet):
   queryset = Subreddit.objects.all()
   serializer_class = SubredditSerializer
 
-class TopicView(viewsets.ViewSet):
+class TopicView(viewsets.ModelViewSet):
   queryset = Topic.objects.all()
-  #serializer_class = TopicSerializer
+  serializer_class = TopicSerializer
 
-  def list(self, request):
-    queryset = Topic.objects.all()
-    serializer = TopicSerializer(queryset, many=True)
+@csrf_exempt
+class TopicCreateView(generics.CreateAPIView):
+  queryset = Topic.objects.all()
+  serializer_class = TopicSerializer
 
-    return JsonResponse(serializer.data)
+  def __init__(self, name):
+    self.name= name
 
-  def post(self, request):
+  def get(self, request, *args, **kwargs):
+    print("TEST")
+    return HttpResponse("TESTING123")
 
-    return HttpResponse('This is a POST Request')
+  def create(self, *args, request, **kwargs):
+    print(request)
+    return JsonResponse("This is what was returned")
 
 class DatePeriodView(viewsets.ModelViewSet):
   queryset = DatePeriod.objects.all()

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Overall from './top-level/overall'
+import SubList from './top-level/sub_list'
+
+
+
 class App extends Component {
 
   constructor(props){
@@ -12,10 +17,10 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount () {
     console.log("DID MOUNT")
 
-    fetch('http://127.0.0.1:8000/sample', {
+    fetch('http://127.0.0.1:3001', {
       method: 'GET',
       headers: {
         "Access-Control-Allow-Origin": true,
@@ -26,28 +31,24 @@ class App extends Component {
 
       return response.json()
     }).then(res => {
-      let apiData = res[0]
+
       this.setState({
-        field1: apiData.name,
-        field2: apiData.description
+        field1: res.field1,
+        field2: res.field2
       })
     })
 
   }
 
-  render() {
-    console.log("TEST")
+  render () {
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Django</h1>
+          <h1 className="App-title">Welcome to Working Title</h1>
         </header>
-        <p className="App-intro">
-          A react app with a django backend
-          field1: { this.state.field1}
-           field2: {this.state.field2}
-        </p>
+        <Overall/>
+        <SubList/>
       </div>
     );
   }

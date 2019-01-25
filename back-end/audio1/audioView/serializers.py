@@ -25,19 +25,17 @@ class DatePeriodSerializer(serializers.ModelSerializer):
     model = DatePeriod
     fields = ('period_start', 'period_end', 'id')
 
-class TopicSerializer(serializers.Serializer):
-  name = serializers.CharField(max_length=255, default="")
-  subreddit_id = serializers.IntegerField()
-  date_period_id = serializers.IntegerField()
-  sentiment_score = serializers.IntegerField()
-  subreddit_rank = serializers.IntegerField()
-  frequency = serializers.IntegerField()
-
+class TopicSerializer(serializers.ModelSerializer):
   class Meta:
     model = Topic
-    fields = ('name', 'subreddit_id')
+    fields = ('name', 'subreddit_id', 'date_period_id')
 
-
+  #name = serializers.CharField(max_length=255, default="")
+  #subreddit_id = serializers.IntegerField()
+  #date_period_id = serializers.IntegerField()
+  #sentiment_score = serializers.IntegerField()
+  #subreddit_rank = serializers.IntegerField()
+  #frequency = serializers.IntegerField()
 
 
 

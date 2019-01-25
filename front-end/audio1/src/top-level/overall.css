@@ -1,0 +1,22 @@
+.overallMain{
+  height: 500px;
+  background-color: #59667a;
+  color: rgb(255, 0, 255);
+  display: flex;
+}
+
+p{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.overallBox{
+  position: relative;
+  width: 30vw;
+  height: 30vw;
+  float: "left";
+  border: solid;
+  border-color: #000005;
+  margin: 0 auto;
+}
+
