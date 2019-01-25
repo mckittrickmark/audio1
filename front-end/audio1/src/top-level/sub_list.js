@@ -38,8 +38,8 @@ class SubList extends Component {
 
 
   render() {
-    const sublist_items = this.state.sublist.map((item) =>
-      <SubListItem itemName={item.name} /> )
+    const sublist_items = this.state.sublist.map((item, index) =>
+      <SubListItem className="sublitsItem" itemName={item.name} numberComments={item.number_comments} key={index}/> )
 
 
     return (

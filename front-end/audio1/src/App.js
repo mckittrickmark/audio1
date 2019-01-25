@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route} from 'react-router-dom'
+
+
 import './App.css';
 
-import Overall from './top-level/overall'
-import SubList from './top-level/sub_list'
+import HomeScreen from './screens/home'
+import SubredditDetail from './screens/subreddit_detail'
+
+const homeScreen = () => {
+  return (
+    <HomeScreen />
+  );
+}
+
+const subredditDetailScreen = () => {
+  return (
+    <SubredditDetail />
+  )
+}
 
 
 
@@ -13,43 +27,32 @@ class App extends Component {
     super(props);
     this.state = {
       field1: null,
-      field2: null
+      subredditID: 0,
+      subredditName: ""
     }
-  }
-
-  componentDidMount () {
-    console.log("DID MOUNT")
-
-    fetch('http://127.0.0.1:3001', {
-      method: 'GET',
-      headers: {
-        "Access-Control-Allow-Origin": true,
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-      }
-    }).then(response => {
-
-      return response.json()
-    }).then(res => {
-
-      this.setState({
-        field1: res.field1,
-        field2: res.field2
-      })
-    })
 
   }
 
   render () {
 
+    this.subredditDetailSelect = (subredditID, subredditName) => {
+      this.setState({subredditID: subredditID, subredditName: subredditName})
+    }
+
+    this.trx = {
+      subredditDetailSelect: this.subredditDetailSelect
+    }
+
+
+    const stateVars = {
+      subredditID: this.state.subredditID,
+      subredditName: this.state.subredditName
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Working Title</h1>
-        </header>
-        <Overall/>
-        <SubList/>
-      </div>
+      <BrowserRouter>
+        <Route path="/" component={homeScreen} />
+      </BrowserRouter>
     );
   }
 }

@@ -5,10 +5,6 @@ import './overall.css';
 
 class Overall extends Component {
 
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div className="overallMain">

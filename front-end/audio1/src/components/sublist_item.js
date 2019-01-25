@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import './sublist_item.css';
 
 function SubListItem (props) {
 
   return (
-    <div>
-    <p>{props.itemName}</p>
+    <div className="sublistItem">
+      <div className="infoBox">
+        <p>{props.itemName}</p>
+      </div>
+      <div className="resultsBox">
+        <p> Comments: {props.numberComments} </p>
+      </div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'subreddits' => 'subreddit#index'
 
+  post 'comments/bulk' => 'comments#upload'
 
   get '/' => 'topic#test'
 
