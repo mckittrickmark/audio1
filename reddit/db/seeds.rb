@@ -24,8 +24,8 @@ subreddit2 = Subreddit.create!({
 })
 
 timeperiod1 = TimePeriod.create!({
-  period_start: "2019-01-01 00:00:00 +0500",
-  period_end: "2019-01-01 23:59:00 +0500"
+  date: "2019-01-01",
+
 })
 
 subreddit1.topics.create!({

@@ -4,6 +4,7 @@ import '../App.css';
 
 import Overall from '../top-level/overall'
 import SubList from '../top-level/sub_list'
+import NavBar from '../top-level/navbar'
 
 
 class HomeScreen extends Component {
@@ -20,11 +21,13 @@ class HomeScreen extends Component {
 
     return (
       <div className="App">
+        <NavBar />
         <header className="App-header">
           <h1 className="App-title">Welcome to Working Title</h1>
         </header>
         <Overall/>
-        <SubList/>
+        <SubList trx={this.props.trx}/>
+        <p> {this.props.trx.spaghetti} </p>
       </div>
     )
 
