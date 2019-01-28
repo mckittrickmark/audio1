@@ -39,7 +39,7 @@ class SubList extends Component {
 
   render() {
     const sublist_items = this.state.sublist.map((item, index) =>
-      <SubListItem className="sublitsItem" itemName={item.name} numberComments={item.number_comments} key={index}/> )
+      <SubListItem className="sublitsItem" subredditName={item.name} numberComments={item.number_comments} key={index} trx={this.props.trx} subreddit_id={item.subreddit_id}/> )
 
 
     return (

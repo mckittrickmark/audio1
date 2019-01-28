@@ -35,12 +35,16 @@ class App extends Component {
 
   render () {
 
-    this.subredditDetailSelect = (subredditID, subredditName) => {
+    const subredditDetailSelect = (subredditID, subredditName) => {
       this.setState({subredditID: subredditID, subredditName: subredditName})
+      console.log(this.state.subredditID)
+      console.log(this.state.subredditName)
+
     }
 
-    this.trx = {
-      subredditDetailSelect: this.subredditDetailSelect
+    const trx = {
+      subredditDetailSelect: subredditDetailSelect,
+      spaghetti: "spaghetti"
     }
 
 
@@ -49,9 +53,16 @@ class App extends Component {
       subredditName: this.state.subredditName
     }
 
+    //const subredditID = this.state.subredditID
+
     return (
       <BrowserRouter>
-        <Route path="/" component={homeScreen} />
+        <div>
+          <Route exact path="/" render={(props) => (
+            <HomeScreen {...props} trx={trx} stateVars={stateVars}/>)} />
+          <Route exact path={`/subreddits/:subredditID`} render={(props) => (
+            <SubredditDetail {...props} trx={this.trx} stateVars={stateVars}/>)} />
+        </div>
       </BrowserRouter>
     );
   }

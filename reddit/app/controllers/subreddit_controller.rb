@@ -22,6 +22,7 @@ class SubredditController < ApplicationController
       sub_name = subreddit['name']
 
       commentObj = {name: sub_name,
+                    subreddit_id: subreddit_id,
                     number_comments: number_comments}
 
       data.push(commentObj)
@@ -30,6 +31,18 @@ class SubredditController < ApplicationController
 
     puts data
 
+
+    respond_to do |format|
+      format.json { render json: data.to_json}
+    end
+
+  end
+
+  def show
+
+    subreddit_id =  params['subredditID']
+
+    data = Subreddit.find_by(id: subreddit_id)
 
     respond_to do |format|
       format.json { render json: data.to_json}
