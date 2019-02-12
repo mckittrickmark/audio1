@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   post 'comments/bulk' => 'comments#upload'
 
+  get 'topics/' => 'topic#index'
+
+  get 'topics/:name' => 'topic#show'
+
 
   get '/' => 'topic#test'
 

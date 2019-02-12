@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {Router, Route, Switch, Link} from 'react-router-dom'
+import history from './history'
 
 
 import './App.css';
 
 import HomeScreen from './screens/home'
+
 import SubredditDetail from './screens/subreddit_detail'
+import TopicDetail from './screens/topic_detail'
 
-const homeScreen = () => {
-  return (
-    <HomeScreen />
-  );
-}
-
-const subredditDetailScreen = () => {
-  return (
-    <SubredditDetail />
-  )
-}
+import SubredditIndex from './screens/subreddit_index'
+import TopicIndex from './screens/topic_index'
 
 
 
@@ -28,9 +22,25 @@ class App extends Component {
     this.state = {
       field1: null,
       subredditID: 0,
-      subredditName: ""
+      subredditName: "",
+      width: 0,
+      height:0
     }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
 
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   render () {
@@ -42,28 +52,43 @@ class App extends Component {
 
     }
 
+
     const trx = {
       subredditDetailSelect: subredditDetailSelect,
       spaghetti: "spaghetti"
+
     }
 
 
     const stateVars = {
       subredditID: this.state.subredditID,
-      subredditName: this.state.subredditName
+      subredditName: this.state.subredditName,
+      width: this.state.width,
+      height: this.state.height
     }
 
     //const subredditID = this.state.subredditID
 
     return (
-      <BrowserRouter>
-        <div>
+      <Router history={history}>
+        <Switch>
           <Route exact path="/" render={(props) => (
             <HomeScreen {...props} trx={trx} stateVars={stateVars}/>)} />
-          <Route exact path={`/subreddits/:subredditID`} render={(props) => (
-            <SubredditDetail {...props} trx={this.trx} stateVars={stateVars}/>)} />
-        </div>
-      </BrowserRouter>
+
+            <Route exact path={`/subreddits`} render={(props) => (
+              <SubredditIndex {...props} trx={trx} stateVars={stateVars}/>)} />
+
+            <Route exact path={`/subreddits/:subredditID`} render={(props) => (
+              <SubredditDetail {...props} trx={trx} stateVars={stateVars}/>)} />
+
+            <Route exact strict path={`/topics`} render={(props) => (
+              <TopicIndex {...props} trx={trx} stateVars={stateVars}/>)} />
+
+            <Route exact path={`/topics/:topicName`} render={(props) => (
+              <TopicDetail {...props} trx={trx} stateVars={stateVars}/>)} />
+            <Route path="empty" component={null} key="empty"/>
+        </Switch>
+      </Router>
     );
   }
 }

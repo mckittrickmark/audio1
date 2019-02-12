@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_203606) do
+ActiveRecord::Schema.define(version: 2019_01_29_181726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 2019_01_28_203606) do
     t.integer "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "post_id"
+    t.string "comment_id"
+    t.integer "weight"
+    t.string "topic_source"
+    t.string "post_url"
   end
 
   add_foreign_key "comments", "subreddits"

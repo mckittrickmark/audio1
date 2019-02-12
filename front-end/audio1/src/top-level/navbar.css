@@ -1,15 +1,17 @@
 .navbarContainer{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
+
 .col{
+  display: inline-grid;
   padding: 1rem;
   background-color: #33b5e5;
   border: 2px solid #fff;
   color: #fff;
   text-align: center;
-  float: flex-end;
-  position: relative;
+  align-self: right;
+  float: right;
 }
 

@@ -9,10 +9,19 @@ const NavBar = () => {
   return (
     <MDBContainer>
       <MDBRow className="navbarContainer">
-        <MDBCol>One of Two columns</MDBCol>
         <MDBCol>
           <Link to={`/`} >
             <p>Home</p>
+          </Link>
+        </MDBCol>
+        <MDBCol>
+          <Link to={`/subreddits/`} >
+            <p>Subreddits</p>
+          </Link>
+        </MDBCol>
+        <MDBCol>
+          <Link to={`/topics/`} >
+            <p>Topics</p>
           </Link>
         </MDBCol>
       </MDBRow>

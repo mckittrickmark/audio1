@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 
 import './sub_list.css';
 
-import SubListItem from '../components/sublist_item'
+import TopicListItem from '../components/topic_list_item'
 
 
-class SubList extends Component {
+class TopicList extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      sublist: [1, 2, 3]
+      topicList: []
     }
   }
 
   componentDidMount() {
 
-    fetch('http://127.0.0.1:3001/subreddits/', {
+    fetch('http://127.0.0.1:3001/topics/', {
       method: 'GET',
       headers: {
         "Access-Control-Allow-Origin": true,
@@ -29,7 +29,7 @@ class SubList extends Component {
     }).then(res => {
       console.log(res)
       this.setState({
-        sublist: res
+        topicList: res
       })
 
 
@@ -38,18 +38,17 @@ class SubList extends Component {
 
 
   render() {
-    const sublist_items = this.state.sublist.map((item, index) =>
-      <SubListItem className="sublitsItem" subredditName={item.name} numberComments={item.number_comments} key={index} trx={this.props.trx} subreddit_id={item.subreddit_id}/> )
-
-
+    const topic_list_items = this.state.topicList.map((item, index) =>
+      <TopicListItem className="topicListItem" topicName={item.name} weight={item.weight} topic_id={item.id} key={index} trx={this.props.trx}/> )
+    console.log(topic_list_items)
     return (
       <div>
-        <h1> SUBREDDITS </h1>
-        {sublist_items}
+        <h1> TOPICS </h1>
+        {topic_list_items}
       </div>
     )
   }
 
 }
 
-export default SubList
+export default TopicList

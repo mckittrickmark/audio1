@@ -4,6 +4,7 @@ import '../App.css';
 
 import Overall from '../top-level/overall'
 import SubList from '../top-level/sub_list'
+import TopicList from '../top-level/topic_list'
 import NavBar from '../top-level/navbar'
 
 
@@ -27,6 +28,7 @@ class HomeScreen extends Component {
         </header>
         <Overall/>
         <SubList trx={this.props.trx}/>
+        <TopicList trx={this.props.trx}/>
         <p> {this.props.trx.spaghetti} </p>
       </div>
     )

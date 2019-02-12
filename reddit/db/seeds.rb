@@ -16,7 +16,7 @@
 #  exit 0
 #end
 
-subreddit1 = Subreddit.create!({name: "askreddit",
+subreddit1 = Subreddit.create!({name: "gifs",
 })
 
 subreddit2 = Subreddit.create!({
@@ -28,9 +28,90 @@ timeperiod1 = TimePeriod.create!({
 
 })
 
+comment1 = Comment.create!({
+  subreddit_id: 1,
+  time_period_id: 1,
+  number_comments: 1
+
+})
+
+comment2 = Comment.create!({
+  subreddit_id: 2,
+  time_period_id: 1,
+  number_comments: 1
+
+})
+
 subreddit1.topics.create!({
   time_period_id: 1,
-  sentiment: 100,
-  frequency: 12,
-  name: "spaghetti",
+  sentiment: 75,
+  frequency: 10,
+  name: "football",
+  weight: 500,
+  topic_source: nil,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
 })
+
+subreddit1.topics.create!({
+  time_period_id: 1,
+  sentiment: 15,
+  frequency: 10,
+  name: "tom brady",
+  weight: 1000,
+  topic_source: 1,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
+})
+
+subreddit1.topics.create!({
+  time_period_id: 1,
+  sentiment: 25,
+  frequency: 12,
+  name: "patriots",
+  weight: 100,
+  topic_source: 2,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
+})
+
+subreddit1.topics.create!({
+  time_period_id: 1,
+  sentiment: 15,
+  frequency: 12,
+  name: "cheat",
+  weight: 100,
+  topic_source: 2,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
+})
+
+subreddit1.topics.create!({
+  time_period_id: 1,
+  sentiment: 80,
+  frequency: 12,
+  name: "Gisele",
+  weight: 100,
+  topic_source: 2,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
+})
+
+subreddit1.topics.create!({
+  time_period_id: 1,
+  sentiment: 80,
+  frequency: 12,
+  name: "Gisele",
+  weight: 50,
+  topic_source: 2,
+  post_id: "59txr0",
+  post_url: "how_to_make_your_dogs_day",
+  comment_id: "d9bd4h1"
+})
+
+

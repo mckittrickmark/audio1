@@ -5,7 +5,7 @@ class SubredditController < ApplicationController
     #time_period_id = TimePeriod.find_by(period_start: "2019-01-25 00:00:00 0500")
 
 
-    comments = Comment.where(time_period_id: 2)
+    comments = Comment.where(time_period_id: 1)
 
     data = []
 
