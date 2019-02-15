@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_181726) do
+ActiveRecord::Schema.define(version: 2019_02_13_163511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 2019_01_29_181726) do
     t.date "date"
   end
 
+  create_table "topic_masters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "topics", force: :cascade do |t|
     t.integer "subreddit_id"
     t.integer "time_period_id"
@@ -48,12 +54,22 @@ ActiveRecord::Schema.define(version: 2019_01_29_181726) do
     t.string "post_id"
     t.string "comment_id"
     t.integer "weight"
-    t.string "topic_source"
+    t.integer "topic_source"
     t.string "post_url"
+    t.integer "topics_master_id"
+    t.integer "topic_master_id"
+  end
+
+  create_table "topics_master", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "comments", "subreddits"
   add_foreign_key "comments", "time_periods"
   add_foreign_key "topics", "subreddits"
   add_foreign_key "topics", "time_periods"
+  add_foreign_key "topics", "topic_masters"
+  add_foreign_key "topics", "topics_master"
 end

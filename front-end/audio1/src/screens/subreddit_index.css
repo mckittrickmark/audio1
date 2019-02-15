@@ -1,0 +1,13 @@
+.Subreddit-name-link{
+  background-color: rgb(224, 224, 226);
+Link:visited { text-decoration: none; color:red; }
+Link:hover { text-decoration: none; color:blue; }
+Link:focus { text-decoration: none; color:yellow; }
+Link:hover, Link:active { text-decoration: none; color:black }
+}
+
+.Subreddit-name{
+  color: '#282c34';
+  background-color: rgb(224, 224, 226);
+  min-height: 30px;
+}

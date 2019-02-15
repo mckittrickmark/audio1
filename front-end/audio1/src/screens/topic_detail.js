@@ -1,10 +1,9 @@
-import React, { Component, UpdateBlocker} from 'react';
-import { Link, withRouter, Router} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link, withRouter} from 'react-router-dom'
 
 import '../App.css';
 import './topic_detail.css';
 
-import history from '../history'
 
 import NavBar from '../top-level/navbar'
 import TopicSanKey from '../top-level/topic-sankey'
@@ -25,7 +24,6 @@ class TopicDetail extends Component {
   }
 
   fetchTopicInfo(topicName) {
-    console.log("FUCK")
     fetch(`http://127.0.0.1:3001/topics/${topicName}`, {
       method: 'GET',
       headers: {
@@ -38,7 +36,7 @@ class TopicDetail extends Component {
 
       return response.json()
     }).then(res => {
-      console.log(res)
+      console.log(res.topic_info[0])
       this.setState({
           topicInfo: res.topic_info,
           topicSources: res.topic_sources,
@@ -55,11 +53,7 @@ class TopicDetail extends Component {
 
   componentDidMount() {
     const { topicName } = this.props.match.params
-
     this.fetchTopicInfo(topicName)
-
-    console.log("------------ history")
-
 
   }
 
@@ -79,6 +73,7 @@ class TopicDetail extends Component {
 
 
   render() {
+    console.log(this.state.topicInfo)
 
     this.trx.updateTopicName = this.updateTopicName
 
@@ -89,8 +84,8 @@ class TopicDetail extends Component {
       </Link>)
 
     const topicSinksList = this.state.topicSinks.map((item, index) =>
-      <Link key={index} to={`/topics/${item.name}`} >
-        <li onClick={e => this.updateTopicName(e, item.name)} >{item.name}: {item.weight}</li>
+      <Link key={index} to={`/topics/${item.topic_pair_sink}`} >
+        <li onClick={e => this.updateTopicName(e, item.topic_pair_sink)} >{item.topic_pair_sink}: {item.weight}</li>
       </Link>)
 
 
@@ -98,14 +93,14 @@ class TopicDetail extends Component {
       <div className="App">
         <NavBar />
         <header className="App-header">
-          <h1 className="App-title">{this.state.topicInfo.name}</h1>
+          <h1 className="App-title">{this.state.topicName}</h1>
         </header>
         <div className="Sankey-Container">
-          <TopicSanKey nodes={this.state.nodes} links={this.state.links} trx={this.trx} stateVars={this.props.stateVars} />
+          <TopicSanKey nodes={this.state.nodes} links={this.state.links} trx={this.trx} stateVars={this.props.stateVars} screen={"detail"}/>
         </div>
         <div className="tempContainer">
           <div className="tempInner">
-            <h1>SOURCES</h1>
+            <h3>SOURCES</h3>
 
               <ul>
                 {topicSourcesList}
@@ -113,7 +108,7 @@ class TopicDetail extends Component {
 
           </div>
           <div className="tempInner">
-            <h1>SINKS</h1>
+            <h3>SINKS</h3>
             <ul>
               {topicSinksList}
             </ul>

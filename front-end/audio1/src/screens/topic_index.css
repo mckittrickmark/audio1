@@ -1,0 +1,41 @@
+.Index-topic{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Sankey-container-index{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.Index-topic-info{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Index-topic-info.column{
+  width: 200px;
+  display:flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+.topic-name{
+  background-color: rgb(224, 224, 226);
+  min-height: 30px;
+  color: '#282c34';
+
+}
+
+.topic-name-link{
+  background-color: rgb(224, 224, 226);
+Link:visited { text-decoration: none; color:red; }
+Link:hover { text-decoration: none; color:blue; }
+Link:focus { text-decoration: none; color:yellow; }
+Link:hover, Link:active { text-decoration: none; color:black }
+}

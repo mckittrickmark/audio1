@@ -1,51 +1,35 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 import './sub_list.css';
+import '../App.css';
+import '../screens/subreddit_index.css';
 
-import SubListItem from '../components/sublist_item'
+import VerticalBarChart from '../top-level/vertical_bar'
 
 
 class SubList extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      sublist: [1, 2, 3]
-    }
-  }
-
-  componentDidMount() {
-
-    fetch('http://127.0.0.1:3001/subreddits/', {
-      method: 'GET',
-      headers: {
-        "Access-Control-Allow-Origin": true,
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-      }
-    }).then(response => {
-
-      return response.json()
-    }).then(res => {
-      console.log(res)
-      this.setState({
-        sublist: res
-      })
-
-
-    })
-  }
-
 
   render() {
-    const sublist_items = this.state.sublist.map((item, index) =>
-      <SubListItem className="sublitsItem" subredditName={item.name} numberComments={item.number_comments} key={index} trx={this.props.trx} subreddit_id={item.subreddit_id}/> )
 
+    console.log(this.props.subredditArray)
+    const subredditsIndexList = this.props.subredditArray.map((item, key) =>
+      <div>
+      <Link to={`/subreddits/${item.subreddit.name}`} style={{ textDecoration: 'none', color: 'black' }} className="Subreddit-name-link" ><h3 className="Subreddit-name">{item.subreddit.name}</h3></Link>
+        <div className="Index-subreddit">
+          <div className="Vertical-bar-container">
+            <VerticalBarChart data={item.topics_plotted} screen="index"/>
+          </div>
+          <div className="Index-subreddit-info">
+          </div>
+        </div>
+      </div>
+    )
 
     return (
       <div>
-        <h1> SUBREDDITS </h1>
-        {sublist_items}
+        {subredditsIndexList}
       </div>
     )
   }

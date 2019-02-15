@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   get 'subreddits' => 'subreddit#index'
 
-  get 'subreddits/:id' => 'subreddit#show'
+  get 'subreddits/:name' => 'subreddit#show'
 
   post 'comments/bulk' => 'comments#upload'
 
-  get 'topics/' => 'topic#index'
+  get 'topics' => 'topic#index'
 
   get 'topics/:name' => 'topic#show'
 

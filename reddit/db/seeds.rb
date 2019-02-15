@@ -42,13 +42,36 @@ comment2 = Comment.create!({
 
 })
 
+topic1 = TopicMaster.create!({
+  name: "football"
+})
+
+topic2 = TopicMaster.create!({
+  name: "tom brady"
+})
+
+topic3 = TopicMaster.create!({
+  name: "patriots"
+})
+
+topic4 = TopicMaster.create!({
+  name: "cheat"
+})
+
+topic5 = TopicMaster.create!({
+  name: "gisele"
+})
+
+
+
 subreddit1.topics.create!({
   time_period_id: 1,
+  topic_master_id: 1,
   sentiment: 75,
   frequency: 10,
   name: "football",
   weight: 500,
-  topic_source: nil,
+  topic_source: -1,
   post_id: "59txr0",
   post_url: "how_to_make_your_dogs_day",
   comment_id: "d9bd4h1"
@@ -56,6 +79,7 @@ subreddit1.topics.create!({
 
 subreddit1.topics.create!({
   time_period_id: 1,
+  topic_master_id: 2,
   sentiment: 15,
   frequency: 10,
   name: "tom brady",
@@ -68,6 +92,7 @@ subreddit1.topics.create!({
 
 subreddit1.topics.create!({
   time_period_id: 1,
+  topic_master_id: 3,
   sentiment: 25,
   frequency: 12,
   name: "patriots",
@@ -80,6 +105,7 @@ subreddit1.topics.create!({
 
 subreddit1.topics.create!({
   time_period_id: 1,
+  topic_master_id: 4,
   sentiment: 15,
   frequency: 12,
   name: "cheat",
@@ -92,9 +118,10 @@ subreddit1.topics.create!({
 
 subreddit1.topics.create!({
   time_period_id: 1,
+  topic_master_id: 5,
   sentiment: 80,
   frequency: 12,
-  name: "Gisele",
+  name: "gisele",
   weight: 100,
   topic_source: 2,
   post_id: "59txr0",
@@ -102,11 +129,12 @@ subreddit1.topics.create!({
   comment_id: "d9bd4h1"
 })
 
-subreddit1.topics.create!({
+subreddit2.topics.create!({
   time_period_id: 1,
+  topic_master_id: 5,
   sentiment: 80,
   frequency: 12,
-  name: "Gisele",
+  name: "gisele",
   weight: 50,
   topic_source: 2,
   post_id: "59txr0",

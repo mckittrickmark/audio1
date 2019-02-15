@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route, Switch, Link} from 'react-router-dom'
+import {Router, Route, Switch} from 'react-router-dom'
 import history from './history'
 
 
@@ -78,10 +78,10 @@ class App extends Component {
             <Route exact path={`/subreddits`} render={(props) => (
               <SubredditIndex {...props} trx={trx} stateVars={stateVars}/>)} />
 
-            <Route exact path={`/subreddits/:subredditID`} render={(props) => (
+            <Route exact path={`/subreddits/:subredditName`} render={(props) => (
               <SubredditDetail {...props} trx={trx} stateVars={stateVars}/>)} />
 
-            <Route exact strict path={`/topics`} render={(props) => (
+            <Route exact path={`/topics`} render={(props) => (
               <TopicIndex {...props} trx={trx} stateVars={stateVars}/>)} />
 
             <Route exact path={`/topics/:topicName`} render={(props) => (

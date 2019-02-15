@@ -1,0 +1,2 @@
+class TopicMaster < ApplicationRecord
+end
